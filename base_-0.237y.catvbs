@@ -1,0 +1,110 @@
+Language="VBSCRIPT"
+
+Sub CATMain()
+
+Set partDocument1 = CATIA.ActiveDocument
+
+Set part1 = partDocument1.Part
+
+Set bodies1 = part1.Bodies
+
+Set body1 = bodies1.Item("零件几何体")
+
+part1.InWorkObject = body1
+
+Set hybridShapeFactory1 = part1.HybridShapeFactory
+
+Set hybridShapeDirection1 = hybridShapeFactory1.AddNewDirectionByCoord(0.000000, 1.000000, 0.000000)
+
+Set shapeFactory1 = part1.ShapeFactory
+
+Set translate1 = shapeFactory1.AddNewTranslate2(-0.237000)
+
+Set hybridShapeTranslate1 = translate1.HybridShape
+
+hybridShapeTranslate1.VectorType = 0
+
+hybridShapeTranslate1.Direction = hybridShapeDirection1
+
+part1.InWorkObject = hybridShapeTranslate1
+
+part1.Update 
+
+Set body2 = bodies1.Item("基座")
+
+part1.InWorkObject = body2
+
+Set hybridShapeDirection2 = hybridShapeFactory1.AddNewDirectionByCoord(0.000000, 1.000000, 0.000000)
+
+Set translate2 = shapeFactory1.AddNewTranslate2(-0.237000)
+
+Set hybridShapeTranslate2 = translate2.HybridShape
+
+hybridShapeTranslate2.VectorType = 0
+
+hybridShapeTranslate2.Direction = hybridShapeDirection2
+
+part1.InWorkObject = hybridShapeTranslate2
+
+part1.Update 
+
+Set body3 = bodies1.Item("胶黏剂")
+
+part1.InWorkObject = body3
+
+Set hybridShapeDirection3 = hybridShapeFactory1.AddNewDirectionByCoord(0.000000, 1.000000, 0.000000)
+
+Set translate3 = shapeFactory1.AddNewTranslate2(-0.237000)
+
+Set hybridShapeTranslate3 = translate3.HybridShape
+
+hybridShapeTranslate3.VectorType = 0
+
+hybridShapeTranslate3.Direction = hybridShapeDirection3
+
+part1.InWorkObject = hybridShapeTranslate3
+
+part1.Update 
+
+Set body4 = bodies1.Item("P_lock")
+
+part1.InWorkObject = body4
+
+Set selection1 = partDocument1.Selection
+
+Set visPropertySet1 = selection1.VisProperties
+
+Set bodies1 = body4.Parent
+
+Dim bSTR1
+bSTR1 = body4.Name
+
+selection1.Add body4
+
+Set visPropertySet1 = visPropertySet1.Parent
+
+Dim bSTR2
+bSTR2 = visPropertySet1.Name
+
+Dim bSTR3
+bSTR3 = visPropertySet1.Name
+
+visPropertySet1.SetShow 0
+
+selection1.Clear 
+
+Set hybridShapeDirection4 = hybridShapeFactory1.AddNewDirectionByCoord(0.000000, 1.000000, 0.000000)
+
+Set translate4 = shapeFactory1.AddNewTranslate2(-0.237000)
+
+Set hybridShapeTranslate4 = translate4.HybridShape
+
+hybridShapeTranslate4.VectorType = 0
+
+hybridShapeTranslate4.Direction = hybridShapeDirection4
+
+part1.InWorkObject = hybridShapeTranslate4
+
+part1.Update 
+
+End Sub

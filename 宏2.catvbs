@@ -1,0 +1,15 @@
+Language="VBSCRIPT"
+
+Sub CATMain()
+
+Set partDocument1 = CATIA.ActiveDocument
+
+Set selection1 = partDocument1.Selection
+
+selection1.Search "Name=uygyugyufytf,all"
+
+Set selection2 = partDocument1.Selection
+
+selection2.Search "Name=uygyugyufytf,all"
+
+End Sub

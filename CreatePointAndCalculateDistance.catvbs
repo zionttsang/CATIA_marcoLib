@@ -1,0 +1,57 @@
+Language="VBSCRIPT"
+
+Sub CATMain()
+
+Set partDocument1 = CATIA.ActiveDocument
+
+Set part1 = partDocument1.Part
+
+Set hybridBodies1 = part1.HybridBodies
+
+Set hybridBody1 = hybridBodies1.Add()
+
+part1.Update 
+
+Set hybridShapeFactory1 = part1.HybridShapeFactory
+
+Set bodies1 = part1.Bodies
+
+Set body1 = bodies1.Item("零件几何体")
+
+Set shapes1 = body1.Shapes
+
+Set chamfer1 = shapes1.Item("倒角.1")
+
+Set reference1 = part1.CreateReferenceFromBRepName("REdge:(Edge:(Face:(Brp:(Pad.1;1);None:();Cf11:());Face:(Brp:(Pocket.4;0:(Brp:(Sketch.12;2)));None:();Cf11:());None:(Limits1:();Limits2:());Cf11:());WithPermanentBody;WithoutBuildError;WithSelectingFeatureSupport;MFBRepVersion_CXR15)", chamfer1)
+
+Set hybridShapePointCenter1 = hybridShapeFactory1.AddNewPointCenter(reference1)
+
+hybridBody1.AppendHybridShape hybridShapePointCenter1
+
+part1.InWorkObject = hybridShapePointCenter1
+
+part1.Update 
+
+Set reference2 = part1.CreateReferenceFromBRepName("REdge:(Edge:(Face:(Brp:(Pad.1;1);None:();Cf11:());Face:(Brp:(Pocket.4;0:(Brp:(Sketch.12;3)));None:();Cf11:());None:(Limits1:();Limits2:());Cf11:());WithPermanentBody;WithoutBuildError;WithSelectingFeatureSupport;MFBRepVersion_CXR15)", chamfer1)
+
+Set hybridShapePointCenter2 = hybridShapeFactory1.AddNewPointCenter(reference2)
+
+hybridBody1.AppendHybridShape hybridShapePointCenter2
+
+part1.InWorkObject = hybridShapePointCenter2
+
+part1.Update 
+
+Set reference3 = part1.CreateReferenceFromObject(hybridShapePointCenter1)
+
+Set reference4 = part1.CreateReferenceFromObject(hybridShapePointCenter2)
+
+Set hybridShapePointBetween1 = hybridShapeFactory1.AddNewPointBetween(reference3, reference4, 0.500000, 1)
+
+hybridBody1.AppendHybridShape hybridShapePointBetween1
+
+part1.InWorkObject = hybridShapePointBetween1
+
+part1.Update 
+
+End Sub

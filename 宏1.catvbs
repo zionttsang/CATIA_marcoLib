@@ -1,0 +1,11 @@
+Language="VBSCRIPT"
+
+Sub CATMain()
+
+Set partDocument1 = CATIA.ActiveDocument
+
+Set selection1 = partDocument1.Selection
+
+selection1.Search "Name=P_lock,all"
+
+End Sub

@@ -1,0 +1,54 @@
+Language="VBSCRIPT"
+
+Sub CATMain()
+
+Dim distanceY
+distanceY = -0.237000
+Dim distanceX 
+distanceX =  2.400000
+
+Dim strObjs(4)
+
+strObjs(0) = "Áã¼þ¼¸ºÎÌå"
+strObjs(1) = "»ù×ù"
+strObjs(2) = "½ºð¤¼Á"
+strObjs(3) = "Ïð½ºµæ"
+strObjs(4) = "²åÕë"
+
+Set partDocument1 = CATIA.ActiveDocument
+
+Set part1 = partDocument1.Part
+
+Set bodies1 = part1.Bodies
+
+For i = 0 to 4
+
+	If (0=0) Then
+
+		Set body1 = bodies1.Item(strObjs(i))
+		
+		part1.InWorkObject = body1
+		
+		Set hybridShapeFactory1 = part1.HybridShapeFactory
+
+		Set hybridShapeDirection1 = hybridShapeFactory1.AddNewDirectionByCoord(1.000000, 0.000000, 0.000000)
+
+		Set shapeFactory1 = part1.ShapeFactory
+
+		Set translate1 = shapeFactory1.AddNewTranslate2(distanceX)
+
+		Set hybridShapeTranslate1 = translate1.HybridShape
+
+		hybridShapeTranslate1.VectorType = 0
+
+		hybridShapeTranslate1.Direction = hybridShapeDirection1
+
+		part1.InWorkObject = hybridShapeTranslate1
+
+		part1.Update
+	
+	End If
+	
+Next
+
+End Sub
