@@ -3,7 +3,7 @@ Language="VBSCRIPT"
 Sub CATMain()
 
 Dim distanceY
-distanceY = -0.237000
+distanceY = -0.000000
 Dim distanceX 
 distanceX =  2.400000
 
@@ -15,35 +15,51 @@ strObjs(2) = "½ºð¤¼Á"
 strObjs(3) = "Ïð½ºµæ"
 strObjs(4) = "²åÕë"
 
+Dim strLock(6)
+strLock(0) = "P_lock"
+strLock(1) = "K_lock"
+strLock(2) = "V_lock"
+strLock(3) = "P5_lock"
+strLock(4) = "P2_lock"
+strLock(5) = "P7_lock"
+strLock(6) = "V1_lock"
+
+
 Set partDocument1 = CATIA.ActiveDocument
 
 Set part1 = partDocument1.Part
 
 Set bodies1 = part1.Bodies
 
-For i = 0 to 4
+For i = 0 to 9
 
 	If (0=0) Then
-
+	
 		Set body1 = bodies1.Item(strObjs(i))
 		
 		part1.InWorkObject = body1
 		
 		Set hybridShapeFactory1 = part1.HybridShapeFactory
 
-		Set hybridShapeDirection1 = hybridShapeFactory1.AddNewDirectionByCoord(1.000000, 0.000000, 0.000000)
+		Set hybridShapeDirection1 = hybridShapeFactory1.AddNewDirectionByCoord(1.000000, 0.000000, 0.000000)		
+		Set hybridShapeDirection2 = hybridShapeFactory1.AddNewDirectionByCoord(0.000000, 1.000000, 0.000000)
 
 		Set shapeFactory1 = part1.ShapeFactory
 
-		Set translate1 = shapeFactory1.AddNewTranslate2(distanceX)
+		Set translate1 = shapeFactory1.AddNewTranslate2(distanceX)	
+		Set translate2 = shapeFactory1.AddNewTranslate2(distanceY)
 
 		Set hybridShapeTranslate1 = translate1.HybridShape
+		Set hybridShapeTranslate2 = translate2.HybridShape
 
 		hybridShapeTranslate1.VectorType = 0
+		hybridShapeTranslate2.VectorType = 0
 
 		hybridShapeTranslate1.Direction = hybridShapeDirection1
+		hybridShapeTranslate2.Direction = hybridShapeDirection2
 
 		part1.InWorkObject = hybridShapeTranslate1
+		part1.InWorkObject = hybridShapeTranslate2
 
 		part1.Update
 	
